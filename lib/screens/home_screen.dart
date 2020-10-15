@@ -26,14 +26,8 @@ class HomeScreen extends StatelessWidget {
           name1: name1,
           name2: name2,
           onTap: () async {
-            // Notice how clicking the Button takes you to the results screen.
-            // However, instead of showing the percentage, it shows "null%"
-            // Also, the message always shows "Error".
-            // We will have to download the correct percentage and message.
-            // We then have to give it to the results screen.
-
-            // The first parts focuses on downloading the percentage and message.
-            // First, let's create the url
+            // The first part focuses on downloading the percentage and message.
+            // For that, let's create the url
             // TODO (1): Create a string variable called "url" to hold the url...
             //    of our Love Calculator API and the names as two query parameters.
             // Our api also needs us to pass two headers, a host and a key.
