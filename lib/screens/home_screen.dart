@@ -3,6 +3,7 @@ import 'package:love_calculator_3/widgets/names_container.dart';
 
 import 'package:http/http.dart' as http;
 // TODO (1): Import the dart:convert library
+import 'dart:convert';
 
 import 'results_screen.dart';
 
@@ -46,6 +47,7 @@ class HomeScreen extends StatelessWidget {
             // TODO (4): Save the result in a variable called jsonResponse
             // We now have the jsonResponse parsed as a Map!
             // Isn't this much easier than having to manually parse it?
+            var jsonResponse = jsonDecode(response.body);
 
             // Now let's launch the results screen and pass the percent and message from jsonResponse
             // TODO (5): Call Navigator.push()
@@ -53,6 +55,13 @@ class HomeScreen extends StatelessWidget {
             // TODO (7): Pass a MaterialPageRoute() as the second parameter
             // TODO (8): Return ResultsScreen() to the builder of the MaterialPageRoute
             // TODO (9): Finally, pass the parameters of 'percentage' and 'result' to ResultsScreen()
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => ResultsScreen(
+                      percent: int.parse(jsonResponse['percentage']),
+                      message: jsonResponse['result'],
+                    )));
           },
         ),
       ),
