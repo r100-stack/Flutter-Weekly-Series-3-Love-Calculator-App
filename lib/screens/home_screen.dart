@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:love_calculator_3/widgets/names_container.dart';
 
 // TODO (6): Import the newly downloaded http library.
+import 'package:http/http.dart' as http;
 
 import 'results_screen.dart';
 
@@ -26,18 +27,20 @@ class HomeScreen extends StatelessWidget {
           name1: name1,
           name2: name2,
           onTap: () async {
-            // Notice how clicking the Button takes you to the results screen.
-            // However, instead of showing the percentage, it shows "null%"
-            // Also, the message always shows "Error".
-            // We will have to download the correct percentage and message.
-            // We then have to give it to the results screen.
-
-            // The first parts focuses on downloading the percentage and message.
-            // First, let's create the url
+            // The first part focuses on downloading the percentage and message.
+            // For that, let's create the url
             // TODO (1): Create a string variable called "url" to hold the url...
             //    of our Love Calculator API and the names as two query parameters.
+            var url =
+                'https://rapidapi.p.rapidapi.com/getPercentage?fname=${name1.text.trim()}&sname=${name2.text.trim()}';
+
             // Our api also needs us to pass two headers, a host and a key.
             // TODO (2): Create a Map of <String, String> to hold the host and key headers.
+            Map<String, String> headers = {
+              'x-rapidapi-host': 'love-calculator.p.rapidapi.com',
+              'x-rapidapi-key':
+              '4c18f5885bmsh1e7d3e79b072bc6p1ab2a4jsn3c7c75f09aea'
+            };
 
             // Now we let's make the request to our API.
             // To do that, we need to include the http package.
@@ -49,6 +52,8 @@ class HomeScreen extends StatelessWidget {
             // Now that we have the library, let's use it to make the request to our API
             // TODO (7): Call the http.get method and pass the url and headers
             // TODO (8): Print the response to the console to see if everything is working.
+            var response = await http.get(url, headers: headers);
+            print(response.body);
           },
         ),
       ),

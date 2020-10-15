@@ -29,6 +29,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.3
   # TODO (5): Add the copied dependency for the http package
+  http: ^0.12.2
 
 dev_dependencies:
   flutter_test:
