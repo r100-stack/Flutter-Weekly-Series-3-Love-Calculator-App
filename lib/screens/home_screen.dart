@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:love_calculator_3/widgets/custom_button.dart';
+import 'package:love_calculator_3/widgets/names_container.dart';
+
+import 'package:http/http.dart' as http;
 
 class HomeScreen extends StatelessWidget {
+  final TextEditingController name1 = TextEditingController();
+  final TextEditingController name2 = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,42 +20,21 @@ class HomeScreen extends StatelessWidget {
         centerTitle: true,
       ),
       body: Center(
-        child: FittedBox(
-          child: Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20.0),
-              color: Colors.amber[100],
-            ),
-            padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 40.0),
-            width: 300.0,
-            child: Column(
-              children: [
-                TextField(
-                  decoration: InputDecoration(
-                    hintText: 'Name 1',
-                    hintStyle: TextStyle(
-                        fontWeight: FontWeight.w600, color: Colors.red),
-                    contentPadding: EdgeInsets.symmetric(horizontal: 10.0),
-                  ),
-                ),
-                SizedBox(
-                  height: 20.0,
-                ),
-                TextField(
-                  decoration: InputDecoration(
-                    hintText: 'Name 2',
-                    hintStyle: TextStyle(
-                        fontWeight: FontWeight.w600, color: Colors.red),
-                    contentPadding: EdgeInsets.symmetric(horizontal: 10.0),
-                  ),
-                ),
-                SizedBox(
-                  height: 40.0,
-                ),
-                CustomButton()
-              ],
-            ),
-          ),
+        child: NamesContainer(
+          name1: name1,
+          name2: name2,
+          onTap: () async {
+            var url =
+                'https://rapidapi.p.rapidapi.com/getPercentage?fname=${name1.text.trim()}&sname=${name2.text.trim()}';
+            Map<String, String> headers = {
+              'x-rapidapi-host': 'love-calculator.p.rapidapi.com',
+              'x-rapidapi-key':
+                  'f64d7d7a9cmshe6c7e95bc31b2fbp122e41jsn055d2ce0df7a'
+            };
+            var response = await http.get(url, headers: headers);
+            print('Response status: ${response.statusCode}');
+            print('Response body: ${response.body}');
+          },
         ),
       ),
     );

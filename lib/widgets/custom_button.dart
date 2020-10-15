@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
 
 class CustomButton extends StatelessWidget {
+  final Function onTap;
+
+  const CustomButton({
+    this.onTap,
+  });
+
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -9,7 +15,7 @@ class CustomButton extends StatelessWidget {
       child: InkWell(
         splashColor: Colors.red,
         borderRadius: BorderRadius.circular(20.0),
-        onTap: () => null,
+        onTap: onTap,
         child: FittedBox(
           child: Container(
             decoration: BoxDecoration(
