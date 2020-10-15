@@ -23,6 +23,7 @@ class NamesContainer extends StatelessWidget {
           children: [
             TextField(
               controller: name1,
+              cursorColor: Colors.red,
               decoration: InputDecoration(
                 hintText: 'Name 1',
                 hintStyle:
@@ -34,6 +35,7 @@ class NamesContainer extends StatelessWidget {
               height: 20.0,
             ),
             TextField(
+              cursorColor: Colors.red,
               controller: name2,
               decoration: InputDecoration(
                 hintText: 'Name 2',

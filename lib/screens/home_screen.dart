@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:love_calculator_3/widgets/names_container.dart';
 
 import 'package:http/http.dart' as http;
+import 'dart:convert';
+
+import 'results_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   final TextEditingController name1 = TextEditingController();
@@ -31,9 +34,17 @@ class HomeScreen extends StatelessWidget {
               'x-rapidapi-key':
                   '4c18f5885bmsh1e7d3e79b072bc6p1ab2a4jsn3c7c75f09aea'
             };
+
             var response = await http.get(url, headers: headers);
-            print('Response status: ${response.statusCode}');
-            print('Response body: ${response.body}');
+            var jsonResponse = jsonDecode(response.body);
+
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => ResultsScreen(
+                          percent: int.parse(jsonResponse['percentage']),
+                          message: jsonResponse['result'],
+                        )));
           },
         ),
       ),
