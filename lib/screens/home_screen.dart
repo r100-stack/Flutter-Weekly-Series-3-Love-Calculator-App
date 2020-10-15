@@ -29,7 +29,7 @@ class HomeScreen extends StatelessWidget {
             Map<String, String> headers = {
               'x-rapidapi-host': 'love-calculator.p.rapidapi.com',
               'x-rapidapi-key':
-                  'f64d7d7a9cmshe6c7e95bc31b2fbp122e41jsn055d2ce0df7a'
+                  '4c18f5885bmsh1e7d3e79b072bc6p1ab2a4jsn3c7c75f09aea'
             };
             var response = await http.get(url, headers: headers);
             print('Response status: ${response.statusCode}');
